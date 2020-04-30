@@ -1,4 +1,12 @@
-# Markdown Links
+# 💻 Markdown Links - mdLinks 💻
+
+## Diagrama de flujo API - CLI ⛓
+
+### API
+![](diagramaDeFlujo/FlujogramaAPI.png)
+
+### CLI
+![](diagramaDeFlujo/FlujogramaAPI-CLI.png)
 
 ## Preámbulo
 
