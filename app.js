@@ -1,2 +1,2 @@
-const os = require('os');
-console.log( os.platform());
+// const os = require('os');
+// console.log( os.platform());

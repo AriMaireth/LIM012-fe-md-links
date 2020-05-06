@@ -1,0 +1,28 @@
+{
+  "name": "markdown-links-aria",
+  "version": "1.0.0",
+  "description": "\"Libreria creada para validar links de archivos markdown\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AriMaireth/LIM012-fe-md-links.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AriMaireth/LIM012-fe-md-links/issues"
+  },
+  "homepage": "https://github.com/AriMaireth/LIM012-fe-md-links#readme",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.9.6",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^26.0.1"
+  }
+}
