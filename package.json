@@ -4,7 +4,8 @@
   "description": "\"Libreria creada para validar links de archivos markdown\"",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage --verbose"
+  
   },
   "repository": {
     "type": "git",
@@ -20,12 +21,11 @@
     "@babel/plugin-transform-modules-commonjs": "^7.9.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
-    "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
-    "jest": "^26.0.1",
-    "mocha": "^7.1.2"
+    "jest": "^26.0.1"
+   
   },
   "dependencies": {
     "core-util-is": "^1.0.2"
