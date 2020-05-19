@@ -23,23 +23,23 @@ const searchInDirectory = (route) => {
       mdFile.push(convertToAbsolutePath);
     }
   } else {
-    const readExtension = fs.readdirSync(convertToAbsolutePath);
-    readExtension.forEach((extension) => {
+    const readFiles = fs.readdirSync(convertToAbsolutePath);
+    readFiles.forEach((extension) => {
       mdFile = mdFile.concat(searchInDirectory(path.join(convertToAbsolutePath, extension)));
     });
   }
   return mdFile;
 };
+/* Creo mi funcion en la que convierto mi ruta a absoluta y luego con un if/else verifico si son
+ archivos o directorios, si son archivos, selecciono solo los archivos con extension MD y los pusheo
+ al array mdFile y si es un directorio leo la carpeta y la recorro con un forEach,
+ los archivos/elementos que encuentro en el directorio los agrego tambien al array mdFile
+ concatenandolos con la ruta absoluta que creó la funcion. Uno los segmentos con un Join que crea
+ una ruta usando el separador predeterminado. */
 module.exports = {
   itsAbsolute, itsAFile, fileExtension, searchInDirectory,
 };
 
 
-// console.log(searchInDirectory('C:/Users/galle/LIM012-fe-md-links/src/pruebaRuta'));
+// console.log(fs.readdirSync('C:/Users/galle/LIM012-fe-md-links/src/pruebaRuta'));
 // console.log(searchInDirectory('./src'));
-
-// const itsAFile = (fileRoute) => {
-//   if (fs.statSync(fileRoute).isfile === true) {
-//     return route;
-// }else {}
-// }
