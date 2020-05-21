@@ -1,5 +1,5 @@
 const {
-  itsAbsolute, itsAFile, fileExtension, searchInDirectory,
+  itsAbsolute, itsAFile, fileExtension, searchInDirectory, extractHtmlLinks,
 } = require('../src/index.js');
 
 describe('itsAbsolute', () => {
@@ -18,11 +18,11 @@ describe('itsAFile', () => {
     expect(typeof itsAFile).toBe('function');
   });
   it('Retorna true para los archivos', () => {
-    const ruta = './src/pruebaRuta/prueba.js';
+    const ruta = './test/pruebaRuta/prueba.js';
     expect(itsAFile(ruta)).toBe(true);
   });
   it('Deberia retornar false si no es archivo', () => {
-    const ruta = 'C:/Users/galle/LIM012-fe-md-links/src/pruebaRuta';
+    const ruta = 'C:/Users/galle/LIM012-fe-md-links/test/pruebaRuta';
     expect(itsAFile(ruta)).toBe(false);
   });
 });
@@ -32,11 +32,11 @@ describe('fileExtension', () => {
     expect(typeof fileExtension).toBe('function');
   });
   it('Retorna true si la extension del archivo es MD', () => {
-    const ruta = './src/pruebaRuta/prueba.md';
+    const ruta = './test/pruebaRuta/prueba.md';
     expect(fileExtension(ruta)).toBe(true);
   });
   it('Retorna false si la extension del archivo no es MD', () => {
-    const ruta = './src/pruebaRuta/prueba.js';
+    const ruta = './test/pruebaRuta/prueba.js';
     expect(fileExtension(ruta)).toBe(false);
   });
 });
@@ -46,8 +46,28 @@ describe('searchInDirectory', () => {
     expect(typeof searchInDirectory).toBe('function');
   });
   it('Deberia recorrer el directorio y retornar un array con solo los archivos MD', () => {
-    const ruta = './src/pruebaRuta';
-    const resultado = ['C:\\Users\\galle\\LIM012-fe-md-links\\src\\pruebaRuta\\prueba.md'];
+    const ruta = './test/pruebaRuta';
+    const resultado = ['C:\\Users\\galle\\LIM012-fe-md-links\\test\\pruebaRuta\\prueba.md'];
     expect(searchInDirectory(ruta)).toStrictEqual(resultado);
+  });
+});
+
+describe('extractHtmlLinks', () => {
+  it('extractHtmlLinks es una funcion', () => {
+    expect(typeof extractHtmlLinks).toBe('function');
+  });
+  it('Deberia retornar una array de objetos con informacion de los links encontrados en el archivo MD', () => {
+    const ruta = [{
+      href: 'https://lms.laboratoria.la/courses',
+      text: 'Laboratoria LMS',
+      file: 'C:\\Users\\galle\\LIM012-fe-md-links\\test\\pruebaRuta\\prueba.md',
+    }];
+    const resultado = [{
+      href: 'https://lms.laboratoria.la/courses',
+      text: 'Laboratoria LMS',
+      file: 'C:\\Users\\galle\\LIM012-fe-md-links\\test\\pruebaRuta\\prueba.md',
+    }];
+
+    expect(fileExtension(ruta)).toBe(resultado);
   });
 });
