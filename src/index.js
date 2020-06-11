@@ -15,7 +15,8 @@ const itsAFile = (fileRoute) => fs.statSync(fileRoute).isFile();
 // console.log(itsAFile('./test/pruebaRuta/prueba.md'));
 
 // Devolver solo la extension.md de un archivo
-const fileExtension = (extension) => path.extname(extension) === '.md';
+const fileExtension = (extension) => (path.extname(extension) === '.md');
+// console.log(fileExtension('./test/pruebaRuta/prueba.md'));
 
 /* Creo mi funcion en la que convierto mi ruta a absoluta y luego con un if/else verifico si son
  archivos o directorios, si son archivos, selecciono solo los archivos con extension MD y los pusheo
@@ -24,6 +25,7 @@ const fileExtension = (extension) => path.extname(extension) === '.md';
  concatenandolos con la ruta absoluta que creó la funcion. Uno los segmentos con un Join que crea
  una ruta usando el separador predeterminado. */
 const searchInDirectory = (route) => {
+  console.log(route);
   const convertToAbsolutePath = itsAbsolute(route);
   let mdFile = [];
   if (itsAFile(convertToAbsolutePath)) {
@@ -39,21 +41,23 @@ const searchInDirectory = (route) => {
   return mdFile;
 };
 
-const renderer
-const extractHtmlLinks = (route) => {
-  const readFile = fs.readFileSync(route).toString();
-  const links = [];
-  renderer.link = (href, file, text) => links.push({
-    href,
-    text,
-    file: route,
-  });
-  marked(readFile, { renderer });
-  return links;
-};
+/* Creamos un array de objetos con las propiedades href, text y file encontradas en archivos .MD */
+const readFile = (file) => fs.readFileSync(file, 'utf-8');
 
-// console.log(extractHtmlLinks(path.join(cwd, 'test', 'pruebaRuta', 'prueba.md')));
-// console.log(extractHtmlLinks('./test/pruebaRuta/prueba.md'));
+const extractHtmlLinks = (route) => {
+  const fileMd = searchInDirectory(route);
+  const renderer = new marked.Renderer();
+  const links = [];
+  fileMd.forEach((file) => {
+    renderer.link = (href, title, text) => links.push({
+      href,
+      text,
+      file,
+    });
+    marked(readFile(file), { renderer });
+  });
+  return (links);
+};
 
 module.exports = {
   itsAbsolute, itsAFile, fileExtension, searchInDirectory, extractHtmlLinks,

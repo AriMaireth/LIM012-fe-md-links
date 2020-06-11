@@ -1,3 +1,4 @@
+// const path = require('path');
 const {
   itsAbsolute, itsAFile, fileExtension, searchInDirectory, extractHtmlLinks,
 } = require('../src/index.js');
@@ -56,7 +57,7 @@ describe('extractHtmlLinks', () => {
   it('extractHtmlLinks es una funcion', () => {
     expect(typeof extractHtmlLinks).toBe('function');
   });
-  it('Deberia retornar una array de objetos con informacion de los links encontrados en el archivo MD', () => {
+  it('Creamos un array de objetos con las propiedades href, text y file encontradas en los archivos .MD', () => {
     const ruta = [{
       href: 'https://lms.laboratoria.la/courses',
       text: 'Laboratoria LMS',
@@ -68,6 +69,6 @@ describe('extractHtmlLinks', () => {
       file: 'C:\\Users\\galle\\LIM012-fe-md-links\\test\\pruebaRuta\\prueba.md',
     }];
 
-    expect(fileExtension(ruta)).toBe(resultado);
+    expect(extractHtmlLinks(ruta)).toBe(resultado);
   });
 });
